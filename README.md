@@ -15,5 +15,6 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 
 - `/` — Home page
 - `/loan-calculator` — Personal loan EMI estimator
+- `/repayment` — Repayment lookup preview and guidance
 - `/about-us` — About Midway
 - `/apply` — Application details and indicative loan charges
