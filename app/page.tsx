@@ -1,0 +1,46 @@
+'use client'
+
+import { useState } from 'react'
+import SiteHeader from './components/SiteHeader'
+import SiteFooter from './components/SiteFooter'
+
+const steps = [
+  { n: '01', title: 'Tell us what you need', text: 'Choose a loan amount and share a few basic details. It takes just a couple of minutes.' },
+  { n: '02', title: 'See your options', text: 'Review a clear offer with the rate, monthly payment and total cost before you decide.' },
+  { n: '03', title: 'Get moving', text: 'Accept your offer and complete verification. Funds are sent to your bank account.' },
+]
+
+export default function Home() {
+  const [amount, setAmount] = useState(300000)
+  const [openFaq, setOpenFaq] = useState<number | null>(0)
+  const monthly = Math.round((amount * (0.12 / 12) * Math.pow(1 + 0.12 / 12, 36)) / (Math.pow(1 + 0.12 / 12, 36) - 1))
+  const faqs = [
+    ['How much can I borrow?', 'You can explore personal loan amounts from ₹50,000 to ₹10,00,000. Your final offer depends on eligibility and verification.'],
+    ['Will checking my options affect my credit score?', 'Exploring an indicative estimate does not affect your credit score. A lender may make a bureau enquiry when you proceed with a formal application.'],
+    ['What do I need to apply?', 'Keep your PAN, Aadhaar linked mobile number, bank details and income information handy. The exact documents can vary by lender.'],
+    ['When will I receive the money?', 'After your application is approved and you complete the lender’s verification, the disbursal timeline will be shown in your offer.'],
+  ]
+  return <main id="top">
+    <SiteHeader />
+
+    <section className="hero container">
+      <div className="hero-copy"><div className="eyebrow"><span className="eyebrow-line"/> PERSONAL LOANS, MADE CLEAR</div><h1>Good things<br/>move <em>forward.</em></h1><p className="hero-sub">A personal loan that keeps things simple. Find an option that fits your plans, with every detail laid out clearly.</p><div className="hero-actions"><a className="button button-blue" href="#calculator">Explore loan options <span>↗</span></a><a className="text-link" href="#how">See how it works <span>↓</span></a></div><div className="hero-proof"><div className="avatars"><i>R</i><i>A</i><i>S</i></div><span><b>Clear choices.</b><br/>A more confident next step.</span><span className="proof-divider"/><span className="proof-stars">★★★★★<small>Built around you</small></span></div></div>
+      <div className="hero-art"><div className="art-glow"/><div className="route route-one"/><div className="route route-two"/><div className="floating-note note-top"><span className="note-icon">↗</span><span><small>YOUR NEXT STEP</small><b>Closer than you think</b></span></div><div className="card-shadow"/><div className="loan-card"><div className="loan-card-top"><div><span className="card-label">YOUR LOAN SNAPSHOT</span><h3>A little room<br/>to move.</h3></div><div className="card-logo">M<span>↗</span></div></div><div className="card-amount"><small>INDICATIVE LOAN AMOUNT</small><b>₹3,00,000</b></div><div className="card-bottom"><span><small>EST. MONTHLY EMI</small><b>₹9,964</b></span><span className="card-pill">View details <b>↗</b></span></div><div className="card-lines"><i/><i/><i/><i/><i/></div></div><div className="floating-note note-bottom"><span className="check-icon">✓</span><span><b>Clarity at every step</b><small>No surprises, just progress</small></span></div><div className="art-caption">YOUR PLANS. YOUR PACE. <span>01 — 03</span></div></div>
+      <div className="hero-bottom"><span>MADE FOR YOUR NEXT CHAPTER</span><div className="scroll-cue"><i/> SCROLL TO EXPLORE</div><span>EST. 2024 <b>•</b> INDIA</span></div>
+    </section>
+
+    <section className="trust-strip"><div className="container trust-inner"><span>FINANCIAL CHOICES, WITH MORE CLARITY</span><div><b>01</b> Transparent from day one</div><div><b>02</b> A flow built around you</div><div><b>03</b> Support when you need it</div></div></section>
+
+    <section className="how-section section-pad" id="how"><div className="container"><div className="section-heading"><div><div className="eyebrow"><span className="eyebrow-line"/> A SIMPLE THREE-STEP JOURNEY</div><h2>From “what if”<br/>to <em>what’s next.</em></h2></div><p>Big plans shouldn’t come with a complicated process. We’ve made getting started feel refreshingly straightforward.</p></div><div className="steps-grid">{steps.map((step, i) => <article className="step-card" key={step.n}><div className="step-top"><span>{step.n} / 03</span><span className="step-icon">{['⌁','◉','↗'][i]}</span></div><div className="step-graphic"><div className={`step-orbit orbit-${i}`}><span>{['₹','✓','↗'][i]}</span></div><div className="step-dots">•••••</div></div><h3>{step.title}</h3><p>{step.text}</p><div className="step-progress"><i style={{width: `${(i + 1) * 33.33}%`}}/></div></article>)}</div></div></section>
+
+    <section className="why-section section-pad" id="why"><div className="container why-layout"><div className="why-visual"><div className="why-frame"><div className="sun-disc"/><div className="bridge bridge-a"/><div className="bridge bridge-b"/><div className="bridge bridge-c"/><div className="bridge-label">A BETTER WAY<br/>TO MOVE AHEAD</div><div className="why-stamp">MIDWAY<br/><b>01—03</b></div></div><span className="visual-caption">A JOURNEY THAT MEETS YOU WHERE YOU ARE.</span></div><div className="why-copy"><div className="eyebrow"><span className="eyebrow-line"/> WHY MIDWAY</div><h2>Money should<br/>move <em>you forward.</em></h2><p className="why-intro">You have plans. We bring the clarity to help you take the next step with confidence.</p><div className="benefit-list"><div><span className="benefit-num">01</span><span><b>Know what you’re signing up for</b><small>Understand your rate, fees and repayment before you commit.</small></span><span className="benefit-arrow">↗</span></div><div><span className="benefit-num">02</span><span><b>Keep it simple</b><small>A guided digital journey, designed to save you time.</small></span><span className="benefit-arrow">↗</span></div><div><span className="benefit-num">03</span><span><b>Choose what feels right</b><small>Compare your options and take the decision at your pace.</small></span><span className="benefit-arrow">↗</span></div></div><a className="button button-dark" href="#calculator">Find your way forward <span>↗</span></a></div></div></section>
+
+    <section className="calculator-section section-pad" id="calculator"><div className="container calc-layout"><div className="calc-copy"><div className="eyebrow eyebrow-light"><span className="eyebrow-line"/> MAKE YOUR NEXT MOVE</div><h2>A plan that<br/>starts <em>with you.</em></h2><p>Get a quick monthly estimate. Adjust the amount to see what could work for your plans.</p><div className="calc-footnote"><span>✳</span> This is an estimate for illustration. Your actual offer may vary.</div></div><div className="calc-panel"><div className="calc-panel-head"><div><span className="card-label">PERSONAL LOAN ESTIMATOR</span><h3>Find your comfort zone.</h3></div><span className="calc-icon">↗</span></div><div className="range-label"><span>Loan amount</span><b>₹{amount.toLocaleString('en-IN')}</b></div><input aria-label="Loan amount" type="range" min="50000" max="1000000" step="25000" value={amount} onChange={e => setAmount(Number(e.target.value))} style={{background: `linear-gradient(to right, #1465db ${(amount-50000)/950000*100}%, #e7edf5 ${(amount-50000)/950000*100}%)`}}/><div className="range-ends"><span>₹50,000</span><span>₹10,00,000</span></div><div className="calc-details"><div><small>EST. MONTHLY EMI</small><b>₹{monthly.toLocaleString('en-IN')}</b></div><div><small>LOAN TENURE</small><b>36 months</b></div><div><small>INDICATIVE RATE</small><b>12% p.a.</b></div></div><a className="button button-blue calc-button" href="mailto:hello@midway.in?subject=Personal%20loan%20enquiry">Talk to our team <span>↗</span></a><p className="calc-disclaimer">Illustrative estimate only. Interest rate, tenure and eligibility are subject to lender approval. Midway is not a lender.</p></div></div></section>
+
+    <section className="faq-section section-pad" id="faq"><div className="container faq-layout"><div><div className="eyebrow"><span className="eyebrow-line"/> GOOD TO KNOW</div><h2>Questions,<br/><em>meet answers.</em></h2><p>Need a little more clarity? Start here.</p><a className="text-link faq-contact" href="mailto:hello@midway.in">Still curious? Talk to us <span>↗</span></a></div><div className="faq-list">{faqs.map(([q, a], i) => <div className={`faq-item ${openFaq === i ? 'active' : ''}`} key={q}><button onClick={() => setOpenFaq(openFaq === i ? null : i)}><span className="faq-index">0{i + 1}</span><b>{q}</b><i>{openFaq === i ? '−' : '+'}</i></button>{openFaq === i && <p>{a}</p>}</div>)}</div></div></section>
+
+    <section className="closing-cta"><div className="container closing-inner"><div><span className="eyebrow eyebrow-light"><span className="eyebrow-line"/> YOUR NEXT CHAPTER STARTS HERE</span><h2>Ready to move<br/><em>forward?</em></h2></div><a className="button button-white" href="#calculator">Explore your options <span>↗</span></a><div className="closing-path">↗</div></div></section>
+
+    <SiteFooter />
+  </main>
+}
